@@ -2,9 +2,19 @@
 <hr>
 
 ## Lancer
-
+Intallation module
 ```bash
-ts-node initial_code.ts
+npm install
+```
+
+Ancienne version
+```bash
+ts-node initial.ts
+```
+
+Test
+```bash
+
 ```
 
 <hr>

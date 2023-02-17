@@ -1,7 +1,7 @@
-import * as invoices from "./invoices.json";
-import * as plays from "./plays.json";
+import * as invoices from "./data/invoices.json";
+import * as plays from "./data/plays.json";
 
-function statement(invoice, plays) {
+export function statement(invoice, plays) {
     let totalAmount = 0;
     let volumeCredits = 0;
     let result = `Statement for ${invoice.customer}\n`;
