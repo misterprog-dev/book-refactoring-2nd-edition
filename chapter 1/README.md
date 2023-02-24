@@ -40,3 +40,5 @@ On l'améliore lorsque quelqu'un à besoin de comprendre comment ce code fonctio
 Les logiciels incarne la fragilité. Nous pouvons introduit un bug par erreur à tout moment pendant le refactoring. Et le meilleur moyen de se protéger reste les tests.
 
 2. <u>La décomposition de la méthode.</u>
+- Identifier les points qui séparent les différentes parties du comportement global.
+- On effectue des petits changements et on teste après chaque modification.
