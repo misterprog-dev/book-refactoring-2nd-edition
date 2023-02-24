@@ -12,7 +12,7 @@ export function statement(invoice, plays) {
         }).format;
 
     for (let perf of invoice.performances) {
-        const play = plays[perf.playID];
+        const play = playFor(plays, perf);
         let thisAmount = amountFor(play, perf);
 
         // add volume credits
@@ -27,6 +27,10 @@ export function statement(invoice, plays) {
     result += `Amount owed is ${format(totalAmount / 100)}\n`;
     result += `You earned ${volumeCredits} credits\n`;
     return result;
+}
+
+function playFor(plays: any, aPerformance: any) {
+    return plays[aPerformance.playID];
 }
 
 function amountFor(play: any, aPerformance: any): number {

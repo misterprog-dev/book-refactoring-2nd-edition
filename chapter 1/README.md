@@ -42,3 +42,5 @@ Les logiciels incarne la fragilité. Nous pouvons introduit un bug par erreur à
 2. <u>La décomposition de la méthode.</u>
 - Identifier les points qui séparent les différentes parties du comportement global.
 - On effectue des petits changements et on teste après chaque modification.
+
+--> Extraire méthode, remplacer une variable temporaire par une requête
