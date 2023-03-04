@@ -44,3 +44,6 @@ Les logiciels incarne la fragilité. Nous pouvons introduit un bug par erreur à
 - On effectue des petits changements et on teste après chaque modification.
 
 --> Extraire méthode, remplacer une variable temporaire par une requête, incorporer variable, Modifier déclaration de fonction
+
+3. <u>Le nommage de fonction.</u>
+Nommer est à la fois important et délicat. La décomposition d'une grande fonction en fonction plus petites n'a d'intérêt que si les noms des fonctions sont bien choisis.
