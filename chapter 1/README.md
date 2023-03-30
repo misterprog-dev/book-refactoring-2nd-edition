@@ -49,3 +49,6 @@ Les logiciels incarne la fragilité. Nous pouvons introduit un bug par erreur à
 Nommer est à la fois important et délicat. La décomposition d'une grande fonction en fonction plus petites n'a d'intérêt que si les noms des fonctions sont bien choisis.
 
 --->Utilisation d'une variable shadow, Modifier déclaration de fonction, Déplacer instruction, remplacer une variable temporaire par une requête
+
+4. <u>Le Fractionnement par phase.</u>
+On divise la logique en plusieurs : une phase de traitement, une phase de rendu, ...
