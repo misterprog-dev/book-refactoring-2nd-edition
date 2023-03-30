@@ -52,3 +52,5 @@ Nommer est à la fois important et délicat. La décomposition d'une grande fonc
 
 4. <u>Le Fractionnement par phase.</u>
 On divise la logique en plusieurs : une phase de traitement, une phase de rendu, ...
+
+5. <u>Remplacer boucle par pipeline.</u>
