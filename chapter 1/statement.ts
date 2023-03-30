@@ -9,13 +9,16 @@ class StatementData {
 }
 
 export function statement(invoice, plays) {
+    return renderPlainText(createStatementData(invoice, plays));
+}
+
+function createStatementData(invoice, plays) {
     const statementData = new StatementData();
     statementData.customer = invoice.customer;
     statementData.performances = invoice.performances.map(enrichPerformance);
     statementData.totalAmount = totalAmount(statementData);
     statementData.totalVolumeCredits = totalVolumeCredits(statementData);
-   
-    return renderPlainText(statementData, plays);
+    return statementData;
 
     function enrichPerformance(aPerformance) {
         const result = Object.assign({}, aPerformance);
@@ -68,10 +71,11 @@ export function statement(invoice, plays) {
     function totalVolumeCredits(data) {
         return data.performances.reduce((total, p) => total + p.volumeCredits, 0);
     }
+
 }
 
 
-function renderPlainText(data, plays) {
+function renderPlainText(data) {
     let result = `Statement for ${data.customer}\n`;
 
     for (let perf of data.performances) {
