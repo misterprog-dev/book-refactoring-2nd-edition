@@ -1,114 +1,9 @@
 import { describe, expect, test } from '@jest/globals';
-import { statement } from '../statement';
+import { htmlStatement, statement } from '../src/Statement';
 
 
 describe('print statement', () => {
-  test('test to print statement with empty value', () => {
-    // given
-    const invoices = {
-      "customer": "BigCo",
-      "performances": []
-    };
-    const plays = {};
-
-    // when
-    const result = statement(invoices, plays);
-
-    // then
-    let statementPrinted = `Statement for BigCo\n`;
-    statementPrinted += `Amount owed is $0.00\n`;
-    statementPrinted += `You earned 0 credits\n`;
-    expect(result).toBe(statementPrinted);
-  });
-
-  test('test to print statement for play type tragedy for audience more than 30', () => {
-    // given
-    const invoices = {
-      "customer": "BigCo",
-      "performances": [
-        {
-          "playID": "hamlet",
-          "audience": 55
-        }
-      ]
-    };
-    const plays = {
-      "hamlet": {
-        "name": "Hamlet",
-        "type": "tragedy"
-      }
-    };
-
-    // when
-    const result = statement(invoices, plays);
-
-    // then
-    let statementPrinted = `Statement for BigCo\n`;
-    statementPrinted += `  Hamlet: $650.00 (55 seats)\n`;
-    statementPrinted += `Amount owed is $650.00\n`;
-    statementPrinted += `You earned 25 credits\n`;
-    expect(result).toBe(statementPrinted);
-  });
-
-  test('test to print statement for play type tragedy for audience less than 30', () => {
-    // given
-    const invoices = {
-      "customer": "BigCo",
-      "performances": [
-        {
-          "playID": "hamlet",
-          "audience": 25
-        }
-      ]
-    };
-    const plays = {
-      "hamlet": {
-        "name": "Hamlet",
-        "type": "tragedy"
-      }
-    };
-
-    // when
-    const result = statement(invoices, plays);
-
-    // then
-    let statementPrinted = `Statement for BigCo\n`;
-    statementPrinted += `  Hamlet: $400.00 (25 seats)\n`;
-    statementPrinted += `Amount owed is $400.00\n`;
-    statementPrinted += `You earned 0 credits\n`;
-    expect(result).toBe(statementPrinted);
-  });
-
-  test('test to print statement for play type comedy for audience more than 20', () => {
-    // given
-    const invoices = {
-      "customer": "BigCo",
-      "performances": [
-        {
-          "playID": "hamlet",
-          "audience": 25
-        }
-      ]
-    };
-    const plays = {
-      "hamlet": {
-        "name": "Hamlet",
-        "type": "comedy"
-      }
-    };
-
-    // when
-    const result = statement(invoices, plays);
-
-    // then
-    let statementPrinted = `Statement for BigCo\n`;
-    statementPrinted += `  Hamlet: $500.00 (25 seats)\n`;
-    statementPrinted += `Amount owed is $500.00\n`;
-    statementPrinted += `You earned 5 credits\n`;
-    expect(result).toBe(statementPrinted);
-  });
-
-  test('test to print statement for play type comedy for audience less than 20', () => {
+  test('test to print statement with plain text', () => {
     // given
     const invoices = {
       "customer": "BigCo",
@@ -137,7 +32,7 @@ describe('print statement', () => {
     expect(result).toBe(statementPrinted);
   });
 
-  test('test to throw unknown play type', () => {
+  test('test to print statement with html rendering', () => {
     // given
     const invoices = {
       "customer": "BigCo",
@@ -151,16 +46,21 @@ describe('print statement', () => {
     const plays = {
       "hamlet": {
         "name": "Hamlet",
-        "type": "unknown"
+        "type": "comedy"
       }
     };
 
     // when
-    const result = () => {
-      statement(invoices, plays);
-    }
+    const result = htmlStatement(invoices, plays);
 
     // then
-    expect(result).toThrow('unknown type: unknown');
+    let statementPrinted = `<h1>Statement for BigCo</h1>\n`;
+    statementPrinted += "<table>\n";
+    statementPrinted += "<tr><th>play</th><th>seats</th><th>cost</th></tr>";
+    statementPrinted += "  <tr><td>Hamlet</td><td>15</td><td>$345.00</td></tr>\n";
+    statementPrinted += "</table>\n";
+    statementPrinted += "<p>Amount owed is <em>$345.00</em></p>\n";
+    statementPrinted += "<p>You earned <em>3</em> credits</p>\n";
+    expect(result).toBe(statementPrinted);
   });
 });

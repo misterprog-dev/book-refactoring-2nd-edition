@@ -1,7 +1,4 @@
 import { createStatementData } from "./CreateStatementData";
-import * as invoices from "./data/invoices.json";
-import * as plays from "./data/plays.json";
-
 
 export function statement(invoice, plays) {
     return renderPlainText(createStatementData(invoice, plays));
@@ -46,5 +43,3 @@ function usd(aNumber: number) {
             minimumFractionDigits: 2
         }).format(aNumber / 100);
 }
-
-console.log(statement(invoices, plays));
