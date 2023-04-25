@@ -5,7 +5,7 @@ import { htmlStatement, statement } from '../src/Statement';
 describe('print statement', () => {
   test('test to print statement with plain text', () => {
     // given
-    const invoices = {
+    const invoice = {
       "customer": "BigCo",
       "performances": [
         {
@@ -14,15 +14,13 @@ describe('print statement', () => {
         }
       ]
     };
-    const plays = {
-      "hamlet": {
-        "name": "Hamlet",
-        "type": "comedy"
-      }
+    const play = {
+      name: "Hamlet",
+      type: "comedy",
     };
 
     // when
-    const result = statement(invoices, plays);
+    const result = statement(invoice, play);
 
     // then
     let statementPrinted = `Statement for BigCo\n`;
@@ -34,7 +32,7 @@ describe('print statement', () => {
 
   test('test to print statement with html rendering', () => {
     // given
-    const invoices = {
+    const invoice = {
       "customer": "BigCo",
       "performances": [
         {
@@ -43,15 +41,13 @@ describe('print statement', () => {
         }
       ]
     };
-    const plays = {
-      "hamlet": {
-        "name": "Hamlet",
-        "type": "comedy"
-      }
+    const play = {
+      name: "Hamlet",
+      type: "comedy",
     };
 
     // when
-    const result = htmlStatement(invoices, plays);
+    const result = htmlStatement(invoice, play);
 
     // then
     let statementPrinted = `<h1>Statement for BigCo</h1>\n`;
